@@ -10,15 +10,15 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: customer-service
+        - id: customer
           uri: lb://customer
           predicates:
             - Path=/customer/**
           filters:
             - StripPrefix=1
 
-        - id: account-service
-          uri: lb://customer
+        - id: account
+          uri: lb://account
           predicates:
             - Path=/account/**
           filters:
