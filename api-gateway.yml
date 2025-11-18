@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: customer-service
+          uri: lb://CUSTOMER
+          predicates:
+            - Path=/customer/**
+          filters:
+            - StripPrefix=1
+
+        - id: account-service
+          uri: lb://ACCOUNT
+          predicates:
+            - Path=/account/**
+          filters:
+            - StripPrefix=1
